@@ -1,14 +1,88 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Выбор даты и времени</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="page">
-      <!-- Перенесите вашу верстку. Удалите статичные данные. Подключите скрипт -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbie Style - Подтверждение</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <div class="logo-circle"><span class="logo-b">B</span></div>
+            <span class="logo-text">Barbie style</span>
+        </div>
+        <nav class="nav">
+            <a href="#">Услуги</a>
+            <a href="#">Галерея</a>
+            <a href="#">Команда</a>
+            <a href="#">Отзывы</a>
+            <a href="#">Контакты</a>
+        </nav>
+    </header>
+
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="step active"><span class="circle">1</span><div class="line"></div></div>
+            <div class="step active"><span class="circle">2</span><div class="line"></div></div>
+            <div class="step active"><span class="circle">3</span><div class="line"></div></div>
+            <div class="step active current"><span class="circle">4</span><div class="line"></div></div>
+            <div class="step inactive"><span class="circle"></span></div>
+        </div>
     </div>
-  </body>
+
+    <main class="main-content">
+        <div class="content-wrapper">
+            <h1>ПОДТВЕРЖДЕНИЕ:</h1>
+
+            <div class="cards-wrapper">
+                <!-- Календарь -->
+                <div class="card calendar-card">
+                    <div class="card-header">
+                        <h2 id="calendar-title">НОЯБРЬ 2026</h2>
+                        <div class="arrows">
+                            <button class="arrow" id="prev-month" aria-label="Предыдущий месяц">&lt;</button>
+                            <button class="arrow" id="next-month" aria-label="Следующий месяц">&gt;</button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid" id="calendar-grid"></div>
+                </div>
+
+                <!-- Время -->
+                <div class="card time-card">
+                    <h2>Доступное время</h2>
+                    <div class="time-grid" id="time-grid"></div>
+                </div>
+            </div>
+
+            <!-- Нижняя панель -->
+            <div class="bottom-panel">
+                <span class="bottom-panel__label">Ваша запись</span>
+                <span id="selection-info" class="bottom-panel__value is-empty">Выберите дату и время</span>
+            </div>
+
+            <button class="confirm-btn" id="confirm-btn">ПОДТВЕРДИТЬ</button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo-circle small"><span class="logo-b">B</span></div>
+            </div>
+            <div class="footer-links">
+                <a href="#">ПОДДЕРЖКА</a>
+                <a href="#">ОСТАВИТЬ ОТЗЫВ</a>
+                <a href="#">ПАРТНЕРСКАЯ ПРОГРАММА</a>
+                <a href="#">О НАС</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
 </html>
