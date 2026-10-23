@@ -1,26 +1,152 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Выбор даты и времени</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <!--
-      ЗАДАНИЕ
-      ========
-      Сверстать страницу выбора даты и времени по своему макету.
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbie Style - Подтверждение</title>
+    <link rel="stylesheet" href="styles.css">
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
 
-      Пока это только вёрстка. Никакого JavaScript — ни кликов,
-      ни переходов, ни выбора дня. Всё статично.
+    
+    <header class="header">
+        <div class="logo">
+            <div class="logo-circle">
+                <span class="logo-b">B</span>
+            </div>
+            <span class="logo-text">Barbie style</span>
+        </div>
+        <nav class="nav">
+            <a href="#">Услуги</a>
+            <a href="#">Галерея</a>
+            <a href="#">Команда</a>
+            <a href="#">Отзывы</a>
+            <a href="#">Контакты</a>
+        </nav>
+    </header>
 
-      Стили пишите в styles.css. Разметку — здесь.
-    -->
-
-    <div class="page">
-      <!-- Начните отсюда. Разметьте шапку, основную область
-           с календарём и слотами, подвал. -->
+    
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="step active">
+                <span class="circle">1</span>
+                <div class="line"></div>
+            </div>
+            <div class="step active">
+                <span class="circle">2</span>
+                <div class="line"></div>
+            </div>
+            <div class="step active">
+                <span class="circle">3</span>
+                <div class="line"></div>
+            </div>
+            <div class="step active current">
+                <span class="circle">4</span>
+                <div class="line"></div>
+            </div>
+            <div class="step inactive">
+                <span class="circle"></span>
+            </div>
+        </div>
     </div>
-  </body>
+
+  
+    <main class="main-content">
+        <h1>ПОДТВЕРЖДЕНИЕ:</h1>
+
+        <div class="cards-wrapper">
+            <!-- Карточка Календаря -->
+            <div class="card calendar-card">
+                <div class="card-header">
+                    <h2>НОЯБРЬ 2026</h2>
+                    <div class="arrows">
+                        <span class="arrow">&lt;</span>
+                        <span class="arrow">&gt;</span>
+                    </div>
+                </div>
+                
+                <div class="calendar-grid">
+                    <!-- Дни недели -->
+                    <div class="weekday">Пн</div>
+                    <div class="weekday">Вт</div>
+                    <div class="weekday">Ср</div>
+                    <div class="weekday">Чт</div>
+                    <div class="weekday">Пт</div>
+                    <div class="weekday">Сб</div>
+                    <div class="weekday">Вс</div>
+
+                    <!-- Числа -->
+                    <div class="day disabled">26</div>
+                    <div class="day disabled">27</div>
+                    <div class="day disabled">28</div>
+                    <div class="day disabled">29</div>
+                    <div class="day disabled">30</div>
+                    <div class="day disabled">31</div>
+                    <div class="day disabled">1</div>
+                    
+                    <div class="day">2</div>
+                    <div class="day">3</div>
+                    <div class="day">4</div>
+                    <div class="day">5</div>
+                    <div class="day">6</div>
+                    <div class="day">7</div>
+                    <div class="day">8</div>
+
+                    <div class="day">9</div>
+                    <div class="day">10</div>
+                    <div class="day">11</div>
+                    <div class="day">12</div>
+                    <div class="day">13</div>
+                    <div class="day selected">14</div>
+                    <div class="day">15</div>
+
+                    <div class="day">16</div>
+                    <div class="day">17</div>
+                    <div class="day">18</div>
+                    <div class="day">19</div>
+                    <div class="day">20</div>
+                    <div class="day">21</div>
+                    <div class="day">22</div>
+                </div>
+            </div>
+
+            <!-- Карточка Времени -->
+            <div class="card time-card">
+                <h2>Доступное время</h2>
+                <div class="time-grid">
+                    <button class="time-btn">10:00</button>
+                    <button class="time-btn disabled">11:00 <br><span>Занято</span></button>
+                    <button class="time-btn">12:00</button>
+                    <button class="time-btn disabled">13:00 <br><span>Занято</span></button>
+                    <button class="time-btn selected">14:00</button>
+                    <button class="time-btn">15:00</button>
+                    <button class="time-btn">16:00</button>
+                    <button class="time-btn">17:00</button>
+                </div>
+            </div>
+        </div>
+
+        <button class="confirm-btn">ПОДТВЕРДИТЬ</button>
+    </main>
+
+   
+    <footer class="footer">
+        <div class="footer-logo">
+             <div class="logo-circle small">
+                <span class="logo-b">B</span>
+            </div>
+        </div>
+        <div class="footer-links">
+            <a href="#">ПОДДЕРЖКА</a>
+            <a href="#">ОСТАВИТЬ ОТЗЫВ</a>
+            <a href="#">ПАРТНЕРСКАЯ ПРОГРАММА</a>
+            <a href="#">О НАС</a>
+        </div>
+    </footer>
+
+</body>
 </html>
