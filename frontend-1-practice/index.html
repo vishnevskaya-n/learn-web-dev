@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barbie Style - Подтверждение</title>
     <link rel="stylesheet" href="styles.css">
-   
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    
     <header class="header">
         <div class="logo">
             <div class="logo-circle">
@@ -29,7 +28,6 @@
         </nav>
     </header>
 
-    
     <div class="progress-container">
         <div class="progress-bar">
             <div class="step active">
@@ -54,23 +52,20 @@
         </div>
     </div>
 
-  
     <main class="main-content">
         <h1>ПОДТВЕРЖДЕНИЕ:</h1>
 
         <div class="cards-wrapper">
-            <!-- Карточка Календаря -->
             <div class="card calendar-card">
                 <div class="card-header">
                     <h2>НОЯБРЬ 2026</h2>
                     <div class="arrows">
-                        <span class="arrow">&lt;</span>
-                        <span class="arrow">&gt;</span>
+                        <button type="button" class="arrow" aria-label="Предыдущий месяц">&lt;</button>
+                        <button type="button" class="arrow" aria-label="Следующий месяц">&gt;</button>
                     </div>
                 </div>
-                
+
                 <div class="calendar-grid">
-                    <!-- Дни недели -->
                     <div class="weekday">Пн</div>
                     <div class="weekday">Вт</div>
                     <div class="weekday">Ср</div>
@@ -79,72 +74,86 @@
                     <div class="weekday">Сб</div>
                     <div class="weekday">Вс</div>
 
-                    <!-- Числа -->
-                    <div class="day disabled">26</div>
-                    <div class="day disabled">27</div>
-                    <div class="day disabled">28</div>
-                    <div class="day disabled">29</div>
-                    <div class="day disabled">30</div>
-                    <div class="day disabled">31</div>
-                    <div class="day disabled">1</div>
-                    
-                    <div class="day">2</div>
-                    <div class="day">3</div>
-                    <div class="day">4</div>
-                    <div class="day">5</div>
-                    <div class="day">6</div>
-                    <div class="day">7</div>
-                    <div class="day">8</div>
+                    <button type="button" class="day disabled" disabled>26</button>
+                    <button type="button" class="day disabled" disabled>27</button>
+                    <button type="button" class="day disabled" disabled>28</button>
+                    <button type="button" class="day disabled" disabled>29</button>
+                    <button type="button" class="day disabled" disabled>30</button>
+                    <button type="button" class="day disabled" disabled>31</button>
+                    <button type="button" class="day">1</button>
 
-                    <div class="day">9</div>
-                    <div class="day">10</div>
-                    <div class="day">11</div>
-                    <div class="day">12</div>
-                    <div class="day">13</div>
-                    <div class="day selected">14</div>
-                    <div class="day">15</div>
+                    <button type="button" class="day">2</button>
+                    <button type="button" class="day">3</button>
+                    <button type="button" class="day">4</button>
+                    <button type="button" class="day">5</button>
+                    <button type="button" class="day">6</button>
+                    <button type="button" class="day">7</button>
+                    <button type="button" class="day">8</button>
 
-                    <div class="day">16</div>
-                    <div class="day">17</div>
-                    <div class="day">18</div>
-                    <div class="day">19</div>
-                    <div class="day">20</div>
-                    <div class="day">21</div>
-                    <div class="day">22</div>
+                    <button type="button" class="day">9</button>
+                    <button type="button" class="day">10</button>
+                    <button type="button" class="day">11</button>
+                    <button type="button" class="day">12</button>
+                    <button type="button" class="day">13</button>
+                    <button type="button" class="day selected">14</button>
+                    <button type="button" class="day">15</button>
+
+                    <button type="button" class="day">16</button>
+                    <button type="button" class="day">17</button>
+                    <button type="button" class="day">18</button>
+                    <button type="button" class="day">19</button>
+                    <button type="button" class="day">20</button>
+                    <button type="button" class="day">21</button>
+                    <button type="button" class="day">22</button>
+
+                    <button type="button" class="day">23</button>
+                    <button type="button" class="day">24</button>
+                    <button type="button" class="day">25</button>
+                    <button type="button" class="day">26</button>
+                    <button type="button" class="day">27</button>
+                    <button type="button" class="day">28</button>
+                    <button type="button" class="day">29</button>
+
+                    <button type="button" class="day">30</button>
                 </div>
             </div>
 
-            <!-- Карточка Времени -->
             <div class="card time-card">
                 <h2>Доступное время</h2>
                 <div class="time-grid">
-                    <button class="time-btn">10:00</button>
-                    <button class="time-btn disabled">11:00 <br><span>Занято</span></button>
-                    <button class="time-btn">12:00</button>
-                    <button class="time-btn disabled">13:00 <br><span>Занято</span></button>
-                    <button class="time-btn selected">14:00</button>
-                    <button class="time-btn">15:00</button>
-                    <button class="time-btn">16:00</button>
-                    <button class="time-btn">17:00</button>
+                    <button type="button" class="time-btn">10:00</button>
+                    <button type="button" class="time-btn disabled" disabled>11:00<br><span>Занято</span></button>
+                    <button type="button" class="time-btn">12:00</button>
+                    <button type="button" class="time-btn disabled" disabled>13:00<br><span>Занято</span></button>
+                    <button type="button" class="time-btn selected">14:00</button>
+                    <button type="button" class="time-btn">15:00</button>
+                    <button type="button" class="time-btn">16:00</button>
+                    <button type="button" class="time-btn">17:00</button>
                 </div>
             </div>
+        </div>
+
+        <div class="selection-summary">
+            <span class="selection-label">Вы выбрали:</span>
+            <span class="selection-value">14 ноября 2026, 14:00</span>
         </div>
 
         <button class="confirm-btn">ПОДТВЕРДИТЬ</button>
     </main>
 
-   
     <footer class="footer">
-        <div class="footer-logo">
-             <div class="logo-circle small">
-                <span class="logo-b">B</span>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="logo-circle small">
+                    <span class="logo-b">B</span>
+                </div>
             </div>
-        </div>
-        <div class="footer-links">
-            <a href="#">ПОДДЕРЖКА</a>
-            <a href="#">ОСТАВИТЬ ОТЗЫВ</a>
-            <a href="#">ПАРТНЕРСКАЯ ПРОГРАММА</a>
-            <a href="#">О НАС</a>
+            <div class="footer-links">
+                <a href="#">ПОДДЕРЖКА</a>
+                <a href="#">ОСТАВИТЬ ОТЗЫВ</a>
+                <a href="#">ПАРТНЕРСКАЯ ПРОГРАММА</a>
+                <a href="#">О НАС</a>
+            </div>
         </div>
     </footer>
 
