@@ -1,59 +1,108 @@
-// App — корневой компонент приложения.
-//
-// ЗАДАНИЕ
-// --------
-// Перенесите свою страницу выбора даты и времени из нативного JS
-// на React. У вас уже есть:
-//   - готовая вёрстка (HTML);
-//   - готовые стили (CSS);
-//   - рабочий код на нативном JS (валидация дат, рендер календаря,
-//     обработчики кликов, выбор слота).
-//
-// Теперь нужно то же самое сделать в React.
-//
-// ЧТО НУЖНО СДЕЛАТЬ
-// ------------------
-// 1. Разбить страницу на компоненты. Как именно — решайте сами.
-//    Обычно выделяют: шапку, подвал, календарь, сетку слотов,
-//    нижнюю панель.
-//
-// 2. Перенести вёрстку из HTML в JSX. Стили оставить как есть,
-//    просто положить их в тот же проект (например, в src/styles/
-//    или рядом с компонентами).
-//
-// 3. Заменить нативное состояние (переменные + прямые манипуляции
-//    с DOM) на useState. Какие именно данные должны жить в состоянии —
-//    подумайте сами. Скорее всего: текущий месяц, выбранный день,
-//    выбранное время, массив слотов.
-//
-// 4. Рендер календаря и слотов делать через JSX и .map(),
-//    без innerHTML и querySelector.
-//
-// 5. Обработчики кликов — через onClick прямо в JSX,
-//    без addEventListener.
-//
-// 6. Функции для работы с датами, которые вы уже написали
-//    на нативном JS (построение сетки календаря, сравнение дат,
-//    проверка «не раньше сегодня»), можно переиспользовать.
-//    Они чистые — не зависят от React. Создайте файл
-//    src/utils/date.js и перенесите их туда.
-//
-//
-// ПОДСКАЗКА
-// ---------
-// Если что-то не работает или непонятно, как перевести нативный
-// код на React — вернитесь к лекции. Там разбирались все
-// основные приёмы: состояние, пропсы, рендер списков, колбэки.
-//
-// Ниже — пустой каркас. Здесь можно начать писать.
+import { useState } from 'react';
+import Header from './components/Header';
+import ProgressBar from './components/ProgressBar';
+import Footer from './components/Footer';
+import Calendar from './components/Calendar';
+import TimeSlots from './components/TimeSlots';
+import BottomPanel from './components/BottomPanel';
+import { formatDateForPanel } from './utils/date';
 
-function App() {
+
+const SLOTS = [
+  { time: '10:00', available: true  },
+  { time: '11:00', available: false },
+  { time: '12:00', available: true  },
+  { time: '13:00', available: false },
+  { time: '14:00', available: true  },
+  { time: '15:00', available: true  },
+  { time: '16:00', available: true  },
+  { time: '17:00', available: true  },
+];
+
+export default function App() {
+ 
+  const [viewYear, setViewYear]     = useState(2026);
+  const [viewMonth, setViewMonth]   = useState(10);                    
+  const [selectedDate, setSelectedDate] = useState(new Date(2026, 10, 23));
+  const [selectedTime, setSelectedTime] = useState(null);
+
+
+  const handlePrevMonth = () => {
+    setViewMonth((prev) => {
+      if (prev === 0) {
+        setViewYear((y) => y - 1);
+        return 11;
+      }
+      return prev - 1;
+    });
+  };
+
+  const handleNextMonth = () => {
+    setViewMonth((prev) => {
+      if (prev === 11) {
+        setViewYear((y) => y + 1);
+        return 0;
+      }
+      return prev + 1;
+    });
+  };
+
+  
+  const handleDayClick = (date) => {
+    if (selectedDate && date.getTime() === selectedDate.getTime()) return;
+    setSelectedDate(date);
+    setSelectedTime(null); 
+  };
+
+  
+  const handleTimeClick = (time) => {
+    setSelectedTime(time);
+  };
+
+  
+  const handleConfirm = () => {
+    if (!selectedDate || !selectedTime) {
+      alert('Пожалуйста, выберите дату и время.');
+      return;
+    }
+    alert(`Вы записаны на ${formatDateForPanel(selectedDate)} • ${selectedTime}`);
+  };
+
   return (
-    <div>
-      {/* Начните отсюда. Например, разметьте .page, добавьте шапку,
-            основную область, подвал. */}
+    <div className="App">
+      <Header />
+
+      <ProgressBar currentStep={4} totalSteps={5} />
+
+      <main className="main-content">
+        <div className="content-wrapper">
+          <h1>ПОДТВЕРЖДЕНИЕ:</h1>
+
+          <div className="cards-wrapper">
+            <Calendar
+              viewYear={viewYear}
+              viewMonth={viewMonth}
+              selectedDate={selectedDate}
+              onDayClick={handleDayClick}
+              onPrevMonth={handlePrevMonth}
+              onNextMonth={handleNextMonth}
+            />
+            <TimeSlots
+              slots={SLOTS}
+              selectedTime={selectedTime}
+              onTimeClick={handleTimeClick}
+            />
+          </div>
+
+          <BottomPanel
+            selectedDate={selectedDate}
+            selectedTime={selectedTime}
+            onConfirm={handleConfirm}
+          />
+        </div>
+      </main>
+
+      <Footer />
     </div>
   );
 }
-
-export default App;
