@@ -5,49 +5,77 @@ import Footer from './components/Footer';
 import Calendar from './components/Calendar';
 import TimeSlots from './components/TimeSlots';
 import BottomPanel from './components/BottomPanel';
-import { formatDateForPanel } from './utils/date';
+import { formatDateForPanel, isBeforeToday } from './utils/date';
 
 
-const SLOTS = [
-  { time: '10:00', available: true  },
-  { time: '11:00', available: false },
-  { time: '12:00', available: true  },
-  { time: '13:00', available: false },
-  { time: '14:00', available: true  },
-  { time: '15:00', available: true  },
-  { time: '16:00', available: true  },
-  { time: '17:00', available: true  },
-];
+function getSlotsForDate(date) {
+  if (!date) return [];
+  
+  const dayOfWeek = date.getDay(); // 0 = Вс, 6 = Сб
+  const dayOfMonth = date.getDate();
+  const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+  const isEvenDay = dayOfMonth % 2 === 0;
+
+  const baseSlots = [
+    { time: '10:00' },
+    { time: '11:00' },
+    { time: '12:00' },
+    { time: '13:00' },
+    { time: '14:00' },
+    { time: '15:00' },
+    { time: '16:00' },
+    { time: '17:00' },
+  ];
+
+ 
+  return baseSlots.map((slot) => {
+    let available = true;
+    if (slot.time === '11:00' && !isWeekend) available = false; 
+    if (slot.time === '13:00' && isEvenDay) available = false;   
+    return { ...slot, available };
+  });
+}
 
 export default function App() {
- 
-  const [viewYear, setViewYear]     = useState(2026);
-  const [viewMonth, setViewMonth]   = useState(10);                    
-  const [selectedDate, setSelectedDate] = useState(new Date(2026, 10, 23));
+  
+  const today = new Date();
+
+  const [viewYear, setViewYear]     = useState(today.getFullYear());
+  const [viewMonth, setViewMonth]   = useState(today.getMonth());
+  const [selectedDate, setSelectedDate] = useState(today);
   const [selectedTime, setSelectedTime] = useState(null);
 
+ 
+  const currentSlots = getSlotsForDate(selectedDate);
 
+  
   const handlePrevMonth = () => {
     setViewMonth((prev) => {
-      if (prev === 0) {
+      let newMonth = prev - 1;
+      if (newMonth < 0) {
         setViewYear((y) => y - 1);
-        return 11;
+        newMonth = 11;
       }
-      return prev - 1;
+      return newMonth;
     });
+    setSelectedDate(null);
+    setSelectedTime(null);
   };
 
   const handleNextMonth = () => {
     setViewMonth((prev) => {
-      if (prev === 11) {
+      let newMonth = prev + 1;
+      if (newMonth > 11) {
         setViewYear((y) => y + 1);
-        return 0;
+        newMonth = 0;
       }
-      return prev + 1;
+      return newMonth;
     });
+    setSelectedDate(null);
+    setSelectedTime(null);
   };
 
-  
+  // --- выбор дня ---
   const handleDayClick = (date) => {
     if (selectedDate && date.getTime() === selectedDate.getTime()) return;
     setSelectedDate(date);
@@ -56,6 +84,22 @@ export default function App() {
 
   
   const handleTimeClick = (time) => {
+    if (!selectedDate) {
+      alert('Сначала выберите дату.');
+      return;
+    }
+    if (isBeforeToday(selectedDate)) {
+      alert('Нельзя записаться на прошедшую дату.');
+      return;
+    }
+  
+    if (
+      selectedDate.getMonth() !== viewMonth ||
+      selectedDate.getFullYear() !== viewYear
+    ) {
+      alert('Выбранная дата не относится к открытому месяцу.');
+      return;
+    }
     setSelectedTime(time);
   };
 
@@ -88,7 +132,7 @@ export default function App() {
               onNextMonth={handleNextMonth}
             />
             <TimeSlots
-              slots={SLOTS}
+              slots={currentSlots}
               selectedTime={selectedTime}
               onTimeClick={handleTimeClick}
             />

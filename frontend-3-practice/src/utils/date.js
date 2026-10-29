@@ -1,8 +1,17 @@
-const MONTH_NAMES_GENITIVE = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+const WEEKDAYS_FULL = [
+  'Воскресенье', 'Понедельник', 'Вторник', 'Среда',
+  'Четверг', 'Пятница', 'Суббота'
+];
+
+const MONTH_NAMES_GENITIVE = [
+  'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+  'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+];
 
 export function formatDateForPanel(date) {
   if (!date) return '';
-  return `${date.getDate()} ${MONTH_NAMES_GENITIVE[date.getMonth()]} ${date.getFullYear()}`;
+  const weekday = WEEKDAYS_FULL[date.getDay()];
+  return `${weekday}, ${date.getDate()} ${MONTH_NAMES_GENITIVE[date.getMonth()]} ${date.getFullYear()}`;
 }
 
 export function isSameDay(a, b) {
